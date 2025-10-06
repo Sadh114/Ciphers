@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 220 30% 5%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 25% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 220 25% 10%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 195 100% 55%;
+    --primary-foreground: 220 25% 8%;
+    --primary-glow: 195 100% 70%;
+
+    --secondary: 270 80% 65%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 220 20% 15%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 280 85% 70%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 20% 20%;
+    --input: 220 20% 18%;
+    --ring: 195 100% 50%;
+
+    --radius: 0.75rem;
+
+    --gradient-cyber: linear-gradient(135deg, hsl(195 100% 50% / 0.15), hsl(280 80% 65% / 0.15));
+    --gradient-primary: linear-gradient(135deg, hsl(195 100% 55%), hsl(280 85% 70%));
+    --gradient-hero: linear-gradient(180deg, hsl(220 30% 5%), hsl(220 35% 10%));
+    --glow-primary: 0 0 40px hsl(195 100% 50% / 0.6), 0 0 80px hsl(195 100% 50% / 0.3);
+    --glow-accent: 0 0 30px hsl(280 80% 65% / 0.5), 0 0 60px hsl(280 80% 65% / 0.2);
+    --glow-button: 0 0 20px hsl(195 100% 50% / 0.8), 0 0 40px hsl(195 100% 50% / 0.4);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: linear-gradient(180deg, hsl(220 30% 5%), hsl(220 35% 8%), hsl(220 30% 5%));
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .cyber-card {
+    @apply bg-card border border-border rounded-lg p-6 shadow-lg;
+    background: var(--gradient-cyber);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+  }
+  
+  .cyber-card:hover {
+    border-color: hsl(var(--primary) / 0.5);
+    box-shadow: var(--glow-primary);
+    transform: translateY(-2px);
+  }
+
+  .cyber-glow {
+    box-shadow: var(--glow-primary);
+  }
+
+  .cyber-glow-accent {
+    box-shadow: var(--glow-accent);
+  }
+  
+  .glow-button {
+    box-shadow: var(--glow-button);
+    transition: all 0.3s ease;
+  }
+  
+  .glow-button:hover {
+    box-shadow: 0 0 30px hsl(195 100% 50% / 1), 0 0 60px hsl(195 100% 50% / 0.6);
+    transform: translateY(-2px);
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 8s ease infinite;
+  }
+  
+  .section-fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  
+  .section-fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+  
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
